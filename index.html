@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Afif Shalahuddin — Portfolio</title>
+  <meta name="description" content="Portfolio Afif Shalahuddin — Designer & Frontend Developer" />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    /* =====================
+       CSS VARIABLES
+    ===================== */
+    :root{
+      --bg:#0b0b0b;
+      --panel:#0f0f0f;
+      --fg:#f7f7f7;
+      --muted:#bdbdbd;
+      --primary:#00d4ff;
+      --glass:rgba(255,255,255,.04);
+      --glass-strong:rgba(255,255,255,.08);
+      --maxw:1200px;
+    }
+
+    /* =====================
+       RESET & BASE
+    ===================== */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      background:linear-gradient(180deg,var(--bg),#070707);
+      color:var(--fg);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+
+    /* =====================
+       ACCESSIBILITY
+    ===================== */
+    @media (prefers-reduced-motion: reduce){
+      *{animation:none !important;transition:none !important}
+    }
+
+    /* =====================
+       CURSOR (DESKTOP ONLY)
+    ===================== */
+    @media (pointer:fine){
+      body{cursor:none}
+      .cursor{
+        position:fixed;
+        width:18px;height:18px;
+        border-radius:50%;
+        background:var(--primary);
+        pointer-events:none;
+        z-index:9999;
+        transform:translate(-50%,-50%);
+        transition:transform .15s ease;
+      }
+      .cursor.hover{transform:translate(-50%,-50%) scale(1.6)}
+      a,button{cursor:none}
+    }
+
+    /* =====================
+       LAYOUT
+    ===================== */
+    .container{max-width:var(--maxw);margin:auto;padding:32px 20px}
+
+    header{
+      display:flex;justify-content:space-between;align-items:center;
+      gap:16px;padding:14px 18px;margin-bottom:32px;
+      background:var(--glass);backdrop-filter:blur(10px);
+      border-radius:14px;border:1px solid rgba(255,255,255,.05)
+    }
+
+    .brand{display:flex;align-items:center;gap:14px}
+
+    .logo{
+      width:48px;height:48px;border-radius:12px;overflow:hidden;
+      background:#111;box-shadow:0 6px 20px rgba(0,0,0,.6)
+    }
+
+    nav{display:flex;gap:14px;flex-wrap:wrap}
+    nav a{
+      font-size:14px;font-weight:600;color:var(--muted);
+      padding:8px 10px;border-radius:8px;
+      transition:.25s ease
+    }
+    nav a:hover{color:var(--fg);background:var(--glass)}
+
+    .cta{border:1px solid rgba(255,255,255,.15)}
+    .cta:hover{background:var(--primary);color:#000;border-color:var(--primary)}
+
+    /* =====================
+       HERO
+    ===================== */
+    .hero{
+      display:grid;grid-template-columns:1.2fr .8fr;gap:36px;
+      padding:48px 0;align-items:center
+    }
+
+    .hero h1{font-size:42px;letter-spacing:-.02em;margin-bottom:12px}
+    .hero p{color:var(--muted);max-width:60ch}
+
+    .hero-actions{margin-top:20px;display:flex;gap:12px;flex-wrap:wrap}
+
+    button{
+      background:transparent;color:var(--fg);
+      border:1px solid rgba(255,255,255,.15);
+      padding:12px 16px;border-radius:10px;
+      font-weight:700;letter-spacing:.02em;
+      transition:.25s ease
+    }
+    button:hover{background:var(--primary);color:#000;transform:translateY(-2px)}
+
+    .hero-card{
+      background:linear-gradient(180deg,var(--glass),transparent);
+      border:1px solid rgba(255,255,255,.05);
+      border-radius:16px;padding:22px
+    }
+
+    .profile{display:flex;gap:16px;align-items:center}
+    .avatar{
+      width:64px;height:64px;border-radius:14px;
+      background:linear-gradient(135deg,#111,#000);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:800
+    }
+
+    /* =====================
+       SECTIONS
+    ===================== */
+    section{padding:48px 0}
+    section h2{font-size:22px;margin-bottom:18px}
+
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+
+    .card{
+      background:linear-gradient(180deg,var(--panel),#070707);
+      border-radius:14px;padding:18px;
+      border:1px solid rgba(255,255,255,.05);
+      transition:.3s ease
+    }
+    .card:hover{transform:translateY(-6px)}
+
+    .thumb{
+      height:140px;border-radius:10px;margin-bottom:12px;
+      background:linear-gradient(45deg,#0b0b0b,#1a1a1a);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--muted);font-size:14px
+    }
+
+    .tags{display:flex;gap:8px;flex-wrap:wrap}
+    .tag{font-size:12px;padding:6px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.08);color:var(--muted)}
+
+    /* =====================
+       SKILLS
+    ===================== */
+    .skills{display:flex;gap:12px;flex-wrap:wrap}
+    .skill{
+      padding:10px 14px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.1);
+      font-weight:600;transition:.25s ease
+    }
+    .skill:hover{background:var(--primary);color:#000}
+
+    /* =====================
+       CONTACT
+    ===================== */
+    .contact{
+      display:grid;grid-template-columns:1fr 1fr;gap:20px
+    }
+
+    input,textarea{
+      width:100%;background:transparent;color:var(--fg);
+      border:1px solid rgba(255,255,255,.15);
+      padding:12px;border-radius:10px
+    }
+
+    /* =====================
+       FOOTER
+    ===================== */
+    footer{
+      margin-top:48px;padding-top:20px;
+      border-top:1px solid rgba(255,255,255,.08);
+      text-align:center;color:var(--muted);font-size:14px
+    }
+
+    /* =====================
+       RESPONSIVE
+    ===================== */
+    @media(max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .contact{grid-template-columns:1fr}
+    }
+      /* TYPEWRITER EFFECT */
+    .typewriter{
+      font-size:42px;
+      font-weight:800;
+      white-space:nowrap;
+      overflow:hidden;
+      border-right:3px solid var(--primary);
+      width:0;
+      animation:typing 3s steps(30,end) forwards, blink .8s infinite;
+    }
+    @keyframes typing{to{width:100%}}
+    @keyframes blink{50%{border-color:transparent}}
+
+    /* =====================
+   MOBILE OPTIMIZATION
+===================== */
+@media (max-width: 600px){
+
+  /* Container */
+  .container{
+    padding: 20px 16px;
+  }
+
+  /* Header */
+  header{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  nav{
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  /* Hero layout */
+  .hero{
+    grid-template-columns: 1fr;
+    padding: 32px 0;
+    gap: 28px;
+  }
+
+  /* Typewriter text */
+  .typewriter{
+    font-size: 28px;
+    white-space: normal;
+    width: 100%;
+    border-right: none;
+    animation: fadeMobile .8s ease forwards;
+  }
+
+  @keyframes fadeMobile{
+    from{opacity:0; transform:translateY(20px)}
+    to{opacity:1; transform:none}
+  }
+
+  /* Paragraph */
+  .hero p{
+    font-size: 14px;
+  }
+
+  /* Buttons */
+  .hero-actions{
+    flex-direction: column;
+  }
+
+  button{
+    width: 100%;
+  }
+
+  /* Card */
+  .hero-card{
+    padding: 18px;
+  }
+
+  /* Skills */
+  .skills{
+    gap: 10px;
+  }
+
+  .skill{
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  /* Disable custom cursor on mobile */
+  .cursor{
+    display: none;
+  }
+}
+
+
+</style>
+</head>
+<body>
+
+  <div class="cursor" aria-hidden="true"></div>
+
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">
+          <!-- Ganti dengan path online / relative -->
+          <img src="images/profile.jpeg" alt="Afif Shalahuddin" />
+        </div>
+        <div>
+          <strong>Afif Shalahuddin</strong><br>
+          <small style="color:var(--muted)">Designer • Frontend Developer</small>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact" class="cta">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <h1 class="typewriter" data-text="WELCOME TO MY PORTOFOLIO!!"></h1>
+          <p>Saya Afif Shalahuddin dari Makassar. Fokus pada desain minimalis, UI/UX, dan frontend modern yang bersih serta fungsional.</p>
+          <div class="hero-actions">
+            <button onclick="location.href='#projects'">See Projects</button>
+            <button onclick="location.href='#contact'">Hire Me</button>
+          </div>
+        </div>
+
+        <aside class="hero-card">
+          <div class="profile">
+            <div class="avatar">AP</div>
+            <div>
+              <strong>Apip</strong><br>
+              <small style="color:var(--muted)">UI/UX • Frontend • Branding</small>
+            </div>
+          </div>
+          <p style="margin-top:14px;color:var(--muted)">Available for freelance & full‑time work. Based in Indonesia.</p>
+        </aside>
+      </section>
+
+      <section id="projects">
+        <h2>Selected Projects</h2>
+        <div class="grid">
+          <article class="card">
+            <div class="thumb">Portfolio Website</div>
+            <h3>Personal Portfolio</h3>
+            <p style="color:var(--muted)">Fast, minimal, and typography‑driven.</p>
+            <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span></div>
+          </article>
+          <article class="card">
+            <div class="thumb">Brand Identity</div>
+            <h3>Brand System</h3>
+            <p style="color:var(--muted)">Monochrome branding & logo system.</p>
+            <div class="tags"><span class="tag">Branding</span><span class="tag">Design</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="skills">
+        <h2>Skills & Tools</h2>
+        <div class="skills">
+          <span class="skill"><i class="fab fa-html5"></i> HTML</span>
+          <span class="skill"><i class="fab fa-css3-alt"></i> CSS</span>
+          <span class="skill"><i class="fab fa-js"></i> JavaScript</span>
+          <span class="skill"><i class="fab fa-react"></i> React</span>
+          <span class="skill"><i class="fab fa-figma"></i> Figma</span>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact">
+          <div class="card">
+            <p>Email: <strong>apip@example.com</strong></p>
+            <p>Indonesia</p>
+          </div>
+          <form class="card" onsubmit="event.preventDefault();alert('Demo form');">
+            <input type="text" placeholder="Your name" required>
+            <input type="email" placeholder="Your email" required>
+            <textarea rows="4" placeholder="Your message" required></textarea>
+            <button type="submit">Send Message</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Afif Shalahuddin
+    </footer>
+  </div>
+
+  <script>
+    // YEAR
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // CURSOR
+    const cursor = document.querySelector('.cursor');
+    if(cursor){
+      window.addEventListener('mousemove', e => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top  = e.clientY + 'px';
+      });
+      document.querySelectorAll('a,button').forEach(el =>{
+        el.addEventListener('mouseenter',()=>cursor.classList.add('hover'));
+        el.addEventListener('mouseleave',()=>cursor.classList.remove('hover'));
+      });
+    }
+      // TYPEWRITER TEXT INIT
+    const tw = document.querySelector('.typewriter');
+    if(tw){ tw.textContent = tw.dataset.text; }
+
+  </script>
+</body>
+</html>
