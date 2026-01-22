@@ -403,17 +403,11 @@
             <p>Linkidn: <storng>Afif Shalahuddin</storng>
             <p>Indonesia</p>
           </div>
-      <form action="https://formsubmit.co/afifshalahuddin24@gmail.com" method="POST">
-
-          <input type="hidden" name="_subject" value="Pesan dari Website Portfolio">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-
-           <input type="text" name="name" placeholder="Your name" required>
-           <input type="email" name="email" placeholder="Your email" required>
-           <textarea name="message" rows="4" placeholder="Your message" required></textarea>
-
-           <button type="submit">Send Message</button>
+      <form id="contact-form">
+        <input type="text" name="name" placeholder="Nama" required>
+        <input type="email" name="email" placeholder="Email" required>
+         <textarea name="message" placeholder="Pesan" required></textarea>
+        <button type="submit">Kirim</button>
       </form>
         </div>
       </section>
@@ -445,5 +439,28 @@
     if(tw){ tw.textContent = tw.dataset.text; }
 
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+(function(){
+  emailjs.init("ZM2ZREbG2CPt8MAx-");
+})();
+
+document.getElementById("contact-form")
+.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  emailjs.sendForm(
+    "service_2424",
+    "template_hjk5vk7",
+    this
+  ).then(function() {
+    alert("Pesan berhasil dikirim!");
+  }, function(error) {
+    alert("Gagal mengirim: " + error.text);
+  });
+});
+</script>
+
 </body>
 </html>
