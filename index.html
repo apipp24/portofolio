@@ -403,12 +403,22 @@
             <p>Linkidn: <storng>Afif Shalahuddin</storng>
             <p>Indonesia</p>
           </div>
-          <form class="card" onsubmit="event.preventDefault();alert('Demo form');">
-            <input type="text" placeholder="Your name" required>
-            <input type="email" placeholder="Your email" required>
-            <textarea rows="4" placeholder="Your message" required></textarea>
-            <button type="submit">Send Message</button>
-          </form>
+       <form
+          class="card"
+          action="https://formsubmit.co/afifshalahuddin24@gmail.com"
+          method="POST"
+      >
+
+          <input type="hidden" name="_subject" value="Pesan dari Website Portfolio">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+
+           <input type="text" name="name" placeholder="Your name" required>
+           <input type="email" name="email" placeholder="Your email" required>
+           <textarea name="message" rows="4" placeholder="Your message" required></textarea>
+
+           <button type="submit">Send Message</button>
+      </form>
         </div>
       </section>
     </main>
